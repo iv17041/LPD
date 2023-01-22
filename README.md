@@ -1,0 +1,2 @@
+# LPD
+Lielais praktiskais darbs
