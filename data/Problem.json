@@ -1,0 +1,116 @@
+{
+  "id": 0,
+  "skillList": [
+    {
+      "skillName": "Webpages"
+    },
+    {
+      "skillName": "Services"
+    },
+    {
+      "skillName": "Databases"
+    }
+  ]
+,
+  "taskTypeList": [
+    {
+      "code": "WEB",
+      "title": "Create Webpage",
+      "baseDuration": 40,
+      "requiredSkillList": [{
+        "skillName": "Webpages"
+      }]
+    },
+    {
+      "code": "SVC",
+      "title": "Create Service",
+      "baseDuration": 60,
+      "requiredSkillList": [{
+        "skillName": "Services"
+      }]
+    },
+    {
+      "code": "DB",
+      "title": "Create DB procedure",
+      "baseDuration": 60,
+      "requiredSkillList": [{
+        "skillName": "Databases"
+      }]
+    }
+  ],
+  "projectList": [
+    {
+      "name": "MAVIS"
+    },
+    {
+      "name": "VARIS"
+    }
+  ],
+  "taskList": [
+    {
+      "id": 0,
+      "taskType": null,
+      "indexInTaskType": 1,
+      "project": null,
+      "readyTime": 0,
+      "priority": "MINOR"
+    },
+    {
+      "id": 1,
+      "taskType": null,
+      "indexInTaskType": 1,
+      "project": null,
+      "readyTime": 0,
+      "priority": "MAJOR"
+    },
+    {
+      "id": 2,
+      "taskType": null,
+      "indexInTaskType": 2,
+      "project": null,
+      "readyTime": 0,
+      "priority": "MAJOR"
+    },
+    {
+      "id": 3,
+      "taskType": null,
+      "indexInTaskType": 1,
+      "project": null,
+      "readyTime": 0,
+      "priority": "CRITICAL"
+    },
+    {
+      "id": 4,
+      "taskType": null,
+      "indexInTaskType": 2,
+      "project": null,
+      "readyTime": 0,
+      "priority": "MINOR"
+    },
+    {
+      "id": 5,
+      "taskType": null,
+      "indexInTaskType": 3,
+      "project": null,
+      "readyTime": 0,
+      "priority": "MINOR"
+    }
+  ],
+  "developerList": [
+    {
+      "fullName": "Amy",
+      "skillSet": [{
+        "skillName": ""
+      }],
+      "tasks": []
+    },
+    {
+      "fullName": "Beth",
+      "skillSet": [{
+        "skillName": ""
+      }],
+      "tasks": []
+    }
+  ],
+  "frozenCutoff": 0
+}
