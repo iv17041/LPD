@@ -1,81 +1,51 @@
 package combopt.iv17041.LPD.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
-import org.optaplanner.core.api.score.buildin.bendable.BendableScore;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
+import org.optaplanner.core.api.score.constraint.Indictment;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @PlanningSolution
-public class TaskSchedule  {
-
-    @ProblemFactCollectionProperty
-    private List<Skill> skillList;
-    @ProblemFactCollectionProperty
-    private List<TaskType> taskTypeList;
-    @ProblemFactCollectionProperty
-    private List<Project> projectList;
-    @ValueRangeProvider(id = "taskRange")
-    @ProblemFactCollectionProperty
+public class TaskSchedule {
+    @PlanningEntityCollectionProperty
     private List<Task> taskList;
-
+    @ValueRangeProvider(id = "developers")
     @PlanningEntityCollectionProperty
     private List<Developer> developerList;
+    @ValueRangeProvider(id = "timeslots")
+    @ProblemFactCollectionProperty
+    private List<TimeSlot> timeSlotList;
+    @PlanningEntityCollectionProperty
+    private List<Tester> testerList;
 
-    @PlanningScore(bendableHardLevelsSize = 1, bendableSoftLevelsSize = 4)
-    private BendableScore score;
-
-    /** Relates to {@link Task#getStartTime()}. */
-    private int frozenCutoff; // In minutes
+    @PlanningScore
+    private HardSoftScore score;
 
     private Long id;
 
     public TaskSchedule() {
+
+        setTaskList(new LinkedList<>());
+        setDeveloperList(new LinkedList<>());
+        setTimeSlotList(new LinkedList<>());
+        setTesterList(new LinkedList<>());
     }
 
-    public TaskSchedule(long id, List<Skill> skillList, List<TaskType> taskTypeList,
-                        List<Project> projectList, List<Developer> developerList, List<Task> taskList) {
-        this.setId(id);
-        this.skillList = skillList;
-        this.taskTypeList = taskTypeList;
-        this.projectList = projectList;
-        this.developerList = developerList;
-        this.taskList = taskList;
-    }
+    @JsonIgnore
+    public List<Task> getTasks(Developer developer, TimeSlot timeSlot) {
+        return this.getTaskList().stream()
+                .filter(task -> task.getDeveloper() != null && task.getTimeSlot() != null &&
+                        task.getDeveloper().equals(developer) && task.getTimeSlot().equals(timeSlot))
+                .collect(Collectors.toList());
 
-    public List<Skill> getSkillList() {
-        return skillList;
-    }
-
-    public void setSkillList(List<Skill> skillList) {
-        this.skillList = skillList;
-    }
-
-    public List<TaskType> getTaskTypeList() {
-        return taskTypeList;
-    }
-
-    public void setTaskTypeList(List<TaskType> taskTypeList) {
-        this.taskTypeList = taskTypeList;
-    }
-
-    public List<Project> getProjectList() {
-        return projectList;
-    }
-
-    public void setProjectList(List<Project> projectList) {
-        this.projectList = projectList;
-    }
-
-    public List<Developer> getDeveloperList() {
-        return developerList;
-    }
-
-    public void setDeveloperList(List<Developer> developerList) {
-        this.developerList = developerList;
     }
 
     public List<Task> getTaskList() {
@@ -86,20 +56,36 @@ public class TaskSchedule  {
         this.taskList = taskList;
     }
 
-    public BendableScore getScore() {
+    public List<Developer> getDeveloperList() {
+        return developerList;
+    }
+
+    public void setDeveloperList(List<Developer> developerList) {
+        this.developerList = developerList;
+    }
+
+    public List<TimeSlot> getTimeSlotList() {
+        return timeSlotList;
+    }
+
+    public void setTimeSlotList(List<TimeSlot> timeSlotList) {
+        this.timeSlotList = timeSlotList;
+    }
+
+    public List<Tester> getTesterList() {
+        return testerList;
+    }
+
+    public void setTesterList(List<Tester> testerList) {
+        this.testerList = testerList;
+    }
+
+    public HardSoftScore getScore() {
         return score;
     }
 
-    public void setScore(BendableScore score) {
+    public void setScore(HardSoftScore score) {
         this.score = score;
-    }
-
-    public int getFrozenCutoff() {
-        return frozenCutoff;
-    }
-
-    public void setFrozenCutoff(int frozenCutoff) {
-        this.frozenCutoff = frozenCutoff;
     }
 
     public Long getId() {

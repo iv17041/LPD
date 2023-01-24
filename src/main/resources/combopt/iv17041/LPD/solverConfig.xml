@@ -7,25 +7,27 @@
     <!--<moveThreadCount>AUTO</moveThreadCount>-->
 
     <solutionClass>combopt.iv17041.LPD.domain.TaskSchedule</solutionClass>
-    <entityClass>combopt.iv17041.LPD.domain.Developer</entityClass>
     <entityClass>combopt.iv17041.LPD.domain.Task</entityClass>
+    <entityClass>combopt.iv17041.LPD.domain.Developer</entityClass>
+    <entityClass>combopt.iv17041.LPD.domain.Tester</entityClass>
 
     <scoreDirectorFactory>
-        <constraintProviderClass>combopt.iv17041.LPD.score.TaskScheduleConstraintProvider</constraintProviderClass>
-        <!--<initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>-->
+        <constraintProviderClass>combopt.iv17041.LPD.score.TaskSchedulerConstraintProvider</constraintProviderClass>
+        <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
     </scoreDirectorFactory>
 
     <termination>
-        <!--<terminationCompositionStyle>OR</terminationCompositionStyle>-->
-        <unimprovedSecondsSpentLimit>10</unimprovedSecondsSpentLimit>
-        <!--<bestScoreLimit>0hard/0medium/0soft</bestScoreLimit>-->
+        <terminationCompositionStyle>OR</terminationCompositionStyle>
+        <unimprovedSecondsSpentLimit>5</unimprovedSecondsSpentLimit>
+        <bestScoreLimit>0hard/0soft</bestScoreLimit>
     </termination>
 
     <constructionHeuristic>
-        <!-- <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>-->
-     </constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+    </constructionHeuristic>
 
-     <localSearch>
-     </localSearch>
+    <localSearch>
+        <!--<localSearchType>TABU_SEARCH</localSearchType>-->
+    </localSearch>
 
- </solver>
+</solver>

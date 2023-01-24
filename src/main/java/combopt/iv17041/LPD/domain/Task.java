@@ -3,82 +3,38 @@ package combopt.iv17041.LPD.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
-
 import org.optaplanner.core.api.domain.lookup.PlanningId;
-import org.optaplanner.core.api.domain.variable.IndexShadowVariable;
-import org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable;
+import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
-@PlanningEntity
+@PlanningEntity(difficultyComparatorClass = TaskComparator.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-public class Task  {
-
+        property = "title")
+public class Task {
     @PlanningId
-    private Long id;
-    private TaskType taskType;
-    private int indexInTaskType;
-    private Project project;
-    private int readyTime;
-    private Priority priority;
-
-    // Shadow variables
-    @InverseRelationShadowVariable(sourceVariableName = "tasks")
+    private String title;
+    @PlanningVariable(valueRangeProviderRefs = "developers")
     private Developer developer;
-    @IndexShadowVariable(sourceVariableName = "tasks")
-    private Integer index;
+    @PlanningVariable(valueRangeProviderRefs = "timeslots")
+    private TimeSlot timeSlot;
+    private int priority;
+    private Tester tester;
 
-    private Integer startTime; // In minutes
+    public Task() { }
 
-    public Task() {
+    public Task(String title, Developer developer, TimeSlot timeSlot, int priority, Tester tester) {
+        setPriority(priority);
+        setDeveloper(developer);
+        setTester(tester);
+        setTitle(title);
+        setTimeSlot(timeSlot);
     }
 
-    public Task(long id, TaskType taskType, int indexInTaskType, Project customer, int readyTime, Priority priority) {
-        this.id = id;
-        this.taskType = taskType;
-        this.indexInTaskType = indexInTaskType;
-        this.project = customer;
-        this.readyTime = readyTime;
-        this.priority = priority;
+    public String getTitle() {
+        return title;
     }
 
-    public TaskType getTaskType() {
-        return taskType;
-    }
-
-    public void setTaskType(TaskType taskType) {
-        this.taskType = taskType;
-    }
-
-    public int getIndexInTaskType() {
-        return indexInTaskType;
-    }
-
-    public void setIndexInTaskType(int indexInTaskType) {
-        this.indexInTaskType = indexInTaskType;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public int getReadyTime() {
-        return readyTime;
-    }
-
-    public void setReadyTime(int readyTime) {
-        this.readyTime = readyTime;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Developer getDeveloper() {
@@ -89,79 +45,32 @@ public class Task  {
         this.developer = developer;
     }
 
-    public Integer getIndex() {
-        return index;
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
     }
 
-    public void setIndex(Integer index) {
-        this.index = index;
+    public void setTimeSlot(TimeSlot timeSlot) {
+        this.timeSlot = timeSlot;
     }
 
-    public Integer getStartTime() {
-        return startTime;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setStartTime(Integer startTime) {
-        this.startTime = startTime;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
-
-    public int getMissingSkillCount() {
-        if (developer == null) {
-            return 0;
-        }
-        int count = 0;
-        for (Skill skill : taskType.getRequiredSkillList()) {
-            if (!developer.getSkillSet().contains(skill)) {
-                count++;
-            }
-        }
-        return count;
+    public Tester getTester() {
+        return tester;
     }
 
-    /**
-     * In minutes
-     *
-     * @return at least 1 minute
-     */
-    public int getDuration() {
-        Affinity affinity = getAffinity();
-        return taskType.getBaseDuration() * affinity.getDurationMultiplier();
-    }
-
-    public Affinity getAffinity() {
-        return (developer == null) ? Affinity.NONE : developer.getAffinity(project);
-    }
-
-    public Integer getEndTime() {
-        if (startTime == null) {
-            return null;
-        }
-        return startTime + getDuration();
-    }
-
-    public String getCode() {
-        return taskType + "-" + indexInTaskType;
-    }
-
-    public String getTitle() {
-        return taskType.getTitle();
+    public void setTester(Tester tester) {
+        this.tester = tester;
     }
 
     @Override
     public String toString() {
-        return getCode();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this.getTitle();
     }
 }
-

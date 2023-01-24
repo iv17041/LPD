@@ -14,25 +14,16 @@ public class Skill {
             this.setSkillName(name);
         }
 
-        public String getName() {
-            return getSkillName();
-        }
-
-        public void setName(String name) {
-            this.setSkillName(name);
-        }
-
-
         @Override
         public String toString() {
-            return this.getName();
+            return this.getSkillName();
         }
 
-    public String getSkillName() {
+        public String getSkillName() {
         return skillName;
     }
 
-    public void setSkillName(String skillName) {
+        public void setSkillName(String skillName) {
         this.skillName = skillName;
     }
 }

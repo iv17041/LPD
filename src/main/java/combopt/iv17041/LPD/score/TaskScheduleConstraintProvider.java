@@ -17,7 +17,7 @@ public final class TaskScheduleConstraintProvider implements ConstraintProvider 
     @Override
     public Constraint[] defineConstraints(ConstraintFactory constraintFactory) {
         return new Constraint[] {
-                //noMissingSkills(constraintFactory),
+                noMissingSkills(constraintFactory),
                 //minimizeMakespan(constraintFactory),
                 //criticalPriorityBasedTaskEndTime(constraintFactory),
                 //majorPriorityTaskEndTime(constraintFactory),
@@ -30,13 +30,13 @@ public final class TaskScheduleConstraintProvider implements ConstraintProvider 
                 .filter(task -> task.getDeveloper() != null && task.getPriority() == priority);
     }
 
-    /*private Constraint noMissingSkills(ConstraintFactory constraintFactory) {
+    private Constraint noMissingSkills(ConstraintFactory constraintFactory) {
         return constraintFactory.forEach(Task.class)
                 .filter(task -> task.getMissingSkillCount() > 0)
                 .penalize(BendableScore.ofHard(BENDABLE_SCORE_HARD_LEVELS_SIZE, BENDABLE_SCORE_SOFT_LEVELS_SIZE, 0, 1),
                         Task::getMissingSkillCount)
                 .asConstraint("No missing skills");
-    }*/
+    }
 
     private Constraint criticalPriorityBasedTaskEndTime(ConstraintFactory constraintFactory) {
         return getTaskWithPriority(constraintFactory, Priority.CRITICAL)

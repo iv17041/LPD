@@ -1,116 +1,82 @@
 {
-  "id": 0,
-  "skillList": [
-    {
-      "skillName": "Webpages"
-    },
-    {
-      "skillName": "Services"
-    },
-    {
-      "skillName": "Databases"
+  "taskList" : [ {
+    "title" : "Task1",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 1,
+    "tester" : {
+      "name" : "Tester3",
+      "developerList" : [ ]
     }
-  ]
-,
-  "taskTypeList": [
-    {
-      "code": "WEB",
-      "title": "Create Webpage",
-      "baseDuration": 40,
-      "requiredSkillList": [{
-        "skillName": "Webpages"
-      }]
-    },
-    {
-      "code": "SVC",
-      "title": "Create Service",
-      "baseDuration": 60,
-      "requiredSkillList": [{
-        "skillName": "Services"
-      }]
-    },
-    {
-      "code": "DB",
-      "title": "Create DB procedure",
-      "baseDuration": 60,
-      "requiredSkillList": [{
-        "skillName": "Databases"
-      }]
+  }, {
+    "title" : "Task2",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 1,
+    "tester" : {
+      "name" : "Tester2",
+      "developerList" : [ ]
     }
-  ],
-  "projectList": [
-    {
-      "name": "MAVIS"
-    },
-    {
-      "name": "VARIS"
+  }, {
+    "title" : "Task3",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 2,
+    "tester" : {
+      "name" : "Tester1",
+      "developerList" : [ ]
     }
-  ],
-  "taskList": [
-    {
-      "id": 0,
-      "taskType": null,
-      "indexInTaskType": 1,
-      "project": null,
-      "readyTime": 0,
-      "priority": "MINOR"
-    },
-    {
-      "id": 1,
-      "taskType": null,
-      "indexInTaskType": 1,
-      "project": null,
-      "readyTime": 0,
-      "priority": "MAJOR"
-    },
-    {
-      "id": 2,
-      "taskType": null,
-      "indexInTaskType": 2,
-      "project": null,
-      "readyTime": 0,
-      "priority": "MAJOR"
-    },
-    {
-      "id": 3,
-      "taskType": null,
-      "indexInTaskType": 1,
-      "project": null,
-      "readyTime": 0,
-      "priority": "CRITICAL"
-    },
-    {
-      "id": 4,
-      "taskType": null,
-      "indexInTaskType": 2,
-      "project": null,
-      "readyTime": 0,
-      "priority": "MINOR"
-    },
-    {
-      "id": 5,
-      "taskType": null,
-      "indexInTaskType": 3,
-      "project": null,
-      "readyTime": 0,
-      "priority": "MINOR"
+  }, {
+    "title" : "Task4",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 3,
+    "tester" : {
+      "name" : "Tester4",
+      "developerList" : [ ]
     }
-  ],
-  "developerList": [
-    {
-      "fullName": "Amy",
-      "skillSet": [{
-        "skillName": ""
-      }],
-      "tasks": []
-    },
-    {
-      "fullName": "Beth",
-      "skillSet": [{
-        "skillName": ""
-      }],
-      "tasks": []
+  }, {
+    "title" : "Task5",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 2,
+    "tester" : {
+      "name" : "Tester5",
+      "developerList" : [ ]
     }
-  ],
-  "frozenCutoff": 0
+  }, {
+    "title" : "Task6",
+    "developer" : null,
+    "timeSlot" : null,
+    "priority" : 2,
+    "tester" : {
+      "name" : "Tester6",
+      "developerList" : [ ]
+    }
+  }],
+  "developerList" : [ {
+    "fullName" : "Dev1",
+    "taskList" : [ ]
+  }, {
+    "fullName" : "Dev2",
+    "taskList" : [ ]
+  }],
+  "timeSlotList" : [ {
+    "id" : 0,
+    "dayOfWeek" : "MONDAY",
+    "startTime" : [ 8, 30 ],
+    "endTime" : [ 10, 10 ]
+  }, {
+    "id" : 1,
+    "dayOfWeek" : "MONDAY",
+    "startTime" : [ 10, 30 ],
+    "endTime" : [ 12, 10 ]
+  }, {
+    "id" : 2,
+    "dayOfWeek" : "MONDAY",
+    "startTime" : [ 12, 30 ],
+    "endTime" : [ 14, 10 ]
+  } ],
+  "testerList" : [ "Tester1", "Tester2", "Tester3", "Tester4", "Tester5", "Tester6" ],
+  "score" : null
 }

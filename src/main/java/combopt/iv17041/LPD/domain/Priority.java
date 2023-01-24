@@ -1,21 +1,32 @@
 package combopt.iv17041.LPD.domain;
 
-public enum Priority {
-    MINOR,
-    MAJOR,
-    CRITICAL;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-    public String getLabel() {
-        switch (this) {
-            case MINOR:
-                return "Minor priority";
-            case MAJOR:
-                return "Major priority";
-            case CRITICAL:
-                return "Critical priority";
-            default:
-                throw new IllegalStateException("The priority (" + this + ") is not implemented.");
-        }
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "rank")
+public class Priority {
+    private int rank;
+
+    public Priority() {}
+
+    public Priority(int rank) {
+        setRank(rank);
     }
+
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.getRank());
+    }
+
 
 }
